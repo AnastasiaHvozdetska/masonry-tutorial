@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/02e8312cff.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.0/masonry.pkgd.min.js"></script>
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+</head>
+<body>
+	<ul id="filter">
+		
+	</ul>
+	<div id="gallery">
+		<div class="item-masonry sizer4" data-filter="Small pictures">
+			<img src="./images/1.jpg" alt="">
+			<div class="cover"></div>
+		</div>
+		<div class="item-masonry sizer4" data-filter="Small pictures">
+			<img src="./images/2.jpg" alt="">
+			<div class="cover"></div>
+		</div>
+		<div class="item-masonry sizer4" data-filter="Small pictures">
+			<img src="./images/3.jpg" alt="">
+			<div class="cover"></div>
+		</div>
+		<div class="item-masonry sizer2" data-filter="Big pictures">
+			<img src="./images/4.jpg" alt="">
+			<div class="cover"></div>
+		</div>
+		<div class="item-masonry sizer4" data-filter="Small pictures">
+			<img src="./images/5.jpg" alt="">
+			<div class="cover"></div>
+		</div>
+		<div class="item-masonry sizer2" data-filter="Big pictures">
+			<img src="./images/6.jpg" alt="">
+			<div class="item-masonry_cover"></div>
+		</div>
+		<div class="item-masonry sizer2" data-filter="Big pictures">
+			<img src="./images/7.jpg" alt="">
+			<div class="cover"></div>
+		</div>
+		<div class="item-masonry sizer2" data-filter="Big pictures">
+			<img src="./images/8.jpg" alt="">
+			<div class="cover"></div>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+		$(document).ready(function(){
+			var sizer = ".sizer4";
+			var container = $("#gallery");
+			container.imagesLoaded(function(){
+				container.masonry({
+					itemSelector: ".item-masonry",
+					columnWidth: sizer,
+					percentPosition: true
+				});
+			});
+			var $grid = $("#gallery").isotope({
+				itemSelector: '.item-masonry',
+				percentPosition: true,
+				layoutMode: 'fitRows',
+			});
+			var filterArray = [];
+			$(".item-masonry").each(function(){
+				filterArray.push($(this).data("filter"));
+			});
+			$.uniqueSort(filterArray);
+			var filterItems = "";
+			$.each(filterArray, function(i, value){
+				filterItems += "<li class='filter_item' data-param='"+value+"'>"+value+"</li>";
+			});
+			 $("#filter").html(filterItems);
+			$(".filter_item").click(function(){
+				var dataParam = $(this).data("param");
+				$grid.isotope({ filter: "[data-filter='"+dataParam+"']" });
+			});
+		});
+	</script>
+</body>
+</html>

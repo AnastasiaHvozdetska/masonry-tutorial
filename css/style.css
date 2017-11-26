@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0; }
+  body .sizer1 {
+    width: 100%; }
+  body .sizer2 {
+    width: 50%; }
+  body .sizer4 {
+    width: 25%; }
+  body .item-masonry img {
+    display: block;
+    vertical-align: middle;
+    width: 100%;
+    transition: 1s;
+    cursor: pointer; }
+    body .item-masonry img:hover {
+      opacity: 0.8;
+      transition: 1s; }
+  body #filter {
+    display: flex;
+    list-style: none;
+    justify-content: space-around; }
+    body #filter .filter_item {
+      cursor: pointer;
+      border: 1px solid orange;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 10px; }
+
+/*# sourceMappingURL=style.css.map */
